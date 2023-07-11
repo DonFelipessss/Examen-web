@@ -1,0 +1,192 @@
+{% load static %} {% load bootstrap4 %} {% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ language_code }}">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="An example of Django project with basic user functionality."
+    />
+    <meta name="author" content="Felipe Alvarez" />
+
+    <link rel="icon" href="{% static 'favicon.ico' %}" />
+    <head>
+        <!-- ... otros elementos en el head ... -->
+      
+        <!-- Estilos CSS de Fancybox -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+      
+        <!-- jQuery (asegúrate de incluirlo antes de Fancybox) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+        <!-- JavaScript de Fancybox -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+      </head>
+
+    <!--==== CSS ====-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+      type="module"
+    ></script>
+
+    <!-- Archivos CSS personalizados -->
+    <link href="{% static 'animalitos/css/styles.css' %}" rel="stylesheet" />
+    <link href="{% static 'animalitos/css/style-I.css' %}" rel="stylesheet" />
+
+    <!--===== Íconos =====-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {% load i18n %}
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="{% static 'animalitos/logo.png' %}" alt="logo">
+          </span>
+
+          <div class="text header-text">
+            <span class="name">Animalitos</span>
+            <span class="profession">Pet Shop</span>
+          </div>
+        </div>
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+      {% if request.user.is_authenticated %} ¡Bienvenido!
+      <b>{{ request.user.username }}</b>.
+       {% else %} 
+       {% trans 'Estás como invitado'%} 
+       {% endif %}
+      <div class="menu-bar">
+        <div class="menu">
+          <li class="search-box">
+            <i class="bx bx-search icon"></i>
+            <input type="text" placeholder="Buscar" />
+          </li>
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="{% url 'inicio' %}">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Inicio</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'tienda' %}">
+                <i class="bx bx-store icon"></i>
+                <span class="text nav-text">Tienda</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'donaciones' %}">
+                <i class="bx bx-donate-heart icon"></i>
+                <span class="text nav-text">Donaciones</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'nosotros' %}">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">Nosotros</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#">
+                <i class="bx bx-envelope icon"></i>
+                <span class="text nav-text">Contacto</span>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %} {% if
+            request.user.is_superuser %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:login' %}"
+                >{% trans 'Django administration' %}</a
+              >
+            </li>
+            {% endif %}
+
+            <li class="nav-link">
+              <a href="{% url 'accounts:change_password' %}">
+                <i class="bx bxs-key icon"></i>
+                <span class="text nav-text">{% trans 'Cambiar Contraseña' %}</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'accounts:change_profile' %}">
+                <i class="bx bxs-credit-card-front icon"></i>
+                <span class="text nav-text">{% trans 'Cambiar Perfil' %}</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'accounts:change_email' %}">
+                <i class="bx bx-envelope icon"></i>
+                <span class="text nav-text">{% trans 'Cambiar Email' %}</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'accounts:log_out' %}">
+                <i class="bx bxs-user-x icon"></i>
+                <span class="text nav-text">{% trans 'Log out' %}</span>
+              </a>
+            </li>
+
+            {% if not request.user.is_authenticated %}
+            <li class="nav-link">
+              <a class="nav-link" href="{% url 'accounts:log_in' %}">
+                <i class="bx bx-user-circle icon"></i>
+                <span class="text nav-text">{% trans 'Log in' %}</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{% url 'accounts:sign_up' %}">
+                <i class="bx bx-user-plus icon"></i>
+                <span class="text nav-text">Crear Usuario</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="bottom-content">
+          <li class="mode">
+            <div class="moon-sun">
+              <i class="bx bx-moon icon moon"></i>
+              <i class="bx bx-sun icon sun"></i>
+            </div>
+            <span class="mode-text text">Dark Mode</span>
+
+            <div class="toggle-switch">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+      {% bootstrap_messages %} {% block content %} No content. {% endblock %}
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script src="{% static 'animalitos/vendor/jquery/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'animalitos/vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'animalitos/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'animalitos/js/ie10-viewport-bug-workaround.js' %}"></script>
+    <script src="{% static 'animalitos/js/script.js' %}"></script>
+  </body>
+</html>

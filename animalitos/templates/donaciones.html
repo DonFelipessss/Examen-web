@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <style>
+    /* Estilos personalizados */
+    .donaciones {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .gallery a {
+      margin: 10px;
+    }
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+
+  <section id="donaciones" class="py-md-5 donaciones">
+    <h2>Donaciones</h2>
+    <div class="gallery">
+      <a href="http://www.santuarioteresadelosandes.cl/new/images/banners/Portada/7.jpg" data-fancybox="gallery" data-caption="Descripción de la imagen 1">
+        <img src="https://fundacionhuellaanimal.cl/" alt="Imagen 1">
+      </a>
+      <a href="ruta-imagen-2.jpg" data-fancybox="gallery" data-caption="Descripción de la imagen 2">
+        <img src="ruta-miniatura-2.jpg" alt="Imagen 2">
+      </a>
+      <!-- Agrega más imágenes aquí -->
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function() {
+      // Inicializar Fancybox
+      $('[data-fancybox="gallery"]').fancybox({
+        loop: true, // Permitir bucle de la galería
+        buttons: [
+          "zoom",
+          "slideShow",
+          "fullScreen",
+          "thumbs",
+          "close"
+        ] // Mostrar botones adicionales
+      });
+    });
+  </script>
+{% endblock %}

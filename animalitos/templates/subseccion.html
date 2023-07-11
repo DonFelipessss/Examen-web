@@ -1,0 +1,6 @@
+<h2>{{ subseccion.nombre }}</h2>
+<ul>
+  {% for producto in productos %}
+    <li><a href="{% url 'animalitos:detalle_producto' producto.id %}">{{ producto.nombre }}</a></li>
+  {% endfor %}
+</ul>

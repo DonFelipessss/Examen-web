@@ -1,0 +1,10 @@
+accounts
+animalitos
+db.sqlite3
+examen-web
+lista.txt
+manage.py
+myenv
+requirements.txt
+static
+tienda

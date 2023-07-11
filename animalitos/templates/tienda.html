@@ -1,0 +1,117 @@
+<!-- tienda.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Tienda de Animalitos</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .tienda {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .subsecciones {
+      list-style-type: none;
+      padding: 0;
+    }
+    .subseccion {
+      display: inline-block;
+      margin: 10px;
+    }
+    .subseccion a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 15px 20px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      font-size: 20px;
+      transition: background-color 0.3s ease;
+    }
+    .subseccion a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+    .submenu {
+  display: none;
+    }
+
+    ul li:hover > .submenu {
+    display: block;
+    position: absolute;
+    }
+
+    
+
+    ul li {
+    display: inline-block;
+    }
+
+    ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    }
+
+    ul li a:hover {
+    background-color: #555;
+    }
+
+ 
+    .submenu {
+    display: none;
+    position: relative;
+    top: 15%; /* Ajuste: Mover el submenú hacia abajo */
+    left: 25;
+  }
+  </style>
+</head>
+<body>
+    <div class="tienda">
+        <h2>Tienda de Animalitos</h2>
+        <ul class="subsecciones">
+          <li class="subseccion">
+            <a href="#">Juguetes </a>
+            <ul class="submenu">
+              <li><a href="#">Opción 1</a></li>
+              <li><a href="#">Opción 2</a></li>
+              <li><a href="#">Opción 3</a></li>
+            </ul>
+          </li>
+          <li class="subseccion">
+            <a href="#">Ropa</a>
+            <ul class="submenu">
+              <li><a href="#">Opción 1</a></li>
+              <li><a href="#">Opción 2</a></li>
+              <li><a href="#">Opción 3</a></li>
+            </ul>
+          </li>
+          <li class="subseccion">
+            <a href="#">Accesorios</a>
+            <ul class="submenu">
+              <li><a href="#">Opción 1</a></li>
+              <li><a href="#">Opción 2</a></li>
+              <li><a href="#">Opción 3</a></li>
+            </ul>
+          </li>
+          <li class="subseccion">
+            <a href="#">Golosinas</a>
+            <ul class="submenu">
+              <li><a href="#">Opción 1</a></li>
+              <li><a href="#">Opción 2</a></li>
+              <li><a href="#">Opción 3</a></li>
+            </ul>
+          </li>
+          <li class="subseccion">
+            <a href="#">Accesorios de moda</a>
+            <ul class="submenu">
+              <li><a href="#">Opción 1</a></li>
+              <li><a href="#">Opción 2</a></li>
+              <li><a href="#">Opción 3</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+</body>
+{% endblock %}
